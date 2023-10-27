@@ -14,7 +14,7 @@ def read_serial():
     global angl_read
     distance_list = []
     outlier_threshold_d = 2
-    num_distance = 1
+    num_distance = 0
     while True:
 
         if ser.in_waiting > 0:
@@ -40,8 +40,9 @@ def read_serial():
                     if len(distance_list) > num_distance:
                         del distance_list[0]
 
+
 # 設定串口，根據您的 Arduino 端口進行調整
-ser = serial.Serial('COM5', 9600)
+ser = serial.Serial('COM8', 9600)
 
 # 設定全局字體大小
 mpl.rcParams['font.size'] = 25  # 調整字體大小
@@ -121,7 +122,7 @@ try:
         distance = float(dist)
 
         # 設定角度（弧度）
-        angle_rad = np.deg2rad(angl_read+ + angle_shift)  # 使用角度資訊設定方位角
+        angle_rad = np.deg2rad(90-angl_read + angle_shift)  # 使用角度資訊設定方位角
 
 
         # 繪製多層漸層綠色光柱
